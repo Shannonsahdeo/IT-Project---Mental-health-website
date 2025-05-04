@@ -22,7 +22,7 @@ Ensure you have the following installed:
 ### Steps
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/Dark-Pandemic/IT_Project-2024.git
+   git clone https://github.com/Shannonsahdeo/IT-Project---Mental-health-website.git
    ```
 2. **Move to the XAMPP `htdocs` Directory:**
    ```sh
@@ -33,11 +33,7 @@ Ensure you have the following installed:
    - Open [phpMyAdmin](http://localhost/phpmyadmin/).
    - Create a database (e.g., `mentalhealthapp`).
    - Import the provided SQL file (`database.sql`) from the project folder.
-5. **Run the Project:**
-   - Open a browser and navigate to:
-     ```
-     http://localhost/IT_Project-2024/index.php
-     ```
+
 
 ## Features
 - **User Authentication:** Secure login and registration system.
