@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesrec.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1><center>Here are some playlists for you!</center></h1>
+
+        {% if playlists %}
+            <ul>
+                {% for playlist in playlists %}
+                    {% if playlist.external_urls and playlist.name %}
+                        <li>
+                            <a href="{{ playlist.external_urls.spotify }}" target="_blank">
+                                {{ playlist.name }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ message }}</p>
+        {% endif %}
+
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

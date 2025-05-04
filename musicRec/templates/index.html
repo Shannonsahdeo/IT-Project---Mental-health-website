@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Recognition & Song Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	
+	
+</head>
+<body>
+<!-- Menu Toggle Button -->
+<button class="toggle-btn">☰</button>
+
+<!-- Side Menu -->
+<div class="side-menu" id="side-menu">
+    <center>
+    <h2>Tunes for Your Mood</h2>
+  
+
+    <!-- Links -->
+<a href="http://localhost:3000/index.php">Home</a>
+<a href="http://localhost:3000/userprofile.php">Profile</a>
+<a href="http://localhost:3000/journal_final/journal.php">Journal</a>
+<a href="http://localhost:3000/breathe.php">Zen Zone</a>
+
+<a href="http://localhost:3000/subscriptions/doctor.php">Donations</a>
+<a href="http://localhost:3000/reflection/weeklyreflectionform.php">Weekly Reflection</a>
+<a href="http://localhost:3000/contacts/contacts_index.php">Emergency Contact</a>
+
+   
+
+    <!-- Log Out Button -->
+    <button class="logout-btn" onclick="confirmLogout()">Log Out</button>
+<center>
+</div>
+    <div class="container">
+        <h1>How are you feeling today?</h1>
+        <form action="/recommend" method="POST">
+            <label for="emotion">Select your mood:</label>
+            <select id="emotion" name="emotion">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="angry">Angry</option>
+                <option value="calm">Calm</option>
+                <option value="excited">Excited</option>
+            </select>
+            <input type="submit" value="Get Recommendations">
+        </form>
+    </div>
+	<script>
+	
+	// Get the button and the side menu
+    const menuToggle = document.querySelector('.toggle-btn');
+    const sideMenu = document.querySelector('.side-menu');
+
+    // Toggle the side menu display when the button is clicked
+    menuToggle.onclick = function() {
+        sideMenu.classList.toggle('active'); // Add or remove the 'active' class to slide in/out
+    };
+
+    // Optional: Close the menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.toggle-btn') && !event.target.closest('.side-menu')) {
+            sideMenu.classList.remove('active');
+        }
+    };
+    function confirmLogout() {
+    const confirmation = confirm("Are you sure you want to log out?");
+    if (confirmation) {
+        // Redirect to the log-out page or perform your logout logic here
+        window.location.href = "loginform.php"; // Change this to your logout URL
+    }
+}
+		</script>
+</body>
+</html>
