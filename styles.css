@@ -1,0 +1,404 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #e0f7fa; /* Light blue background */
+}
+
+
+
+
+/* Only apply these styles if the page has the 'index-page' class */
+.index-page header {
+  position: : static;
+  background: linear-gradient(to right, #309dc4, #559db3, #2481a7, #b1d6df); /* Cool gradient background */
+  padding: 15px 0;
+  text-align: center; /* Center the menu */
+  position: relative;
+  z-index: 1000; /* Ensure it stays above other content */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow to create depth */
+  border-bottom: none; /* Remove the black border */
+  transition: background 0.8s ease, transform 0.3s ease; /* Smooth transition for background and scaling */
+}
+
+/* Hover effect for header */
+.index-page header:hover {
+  background: linear-gradient(to right, #2481a7, #309dc4, #559db3, #d4ecf2); /* Slightly different gradient on hover */
+  transform: scale(1.05); /* Slightly scale up the header */
+}
+
+/* Dropdown Menu - Only for index page */
+.index-page .navbar {
+  display: flex;
+  justify-content: center; /* Center the dropdown */
+}
+
+.index-page .quote {
+  font-style: italic;
+  color: #555; /* Grey color for text */
+  margin-top: 10px; /* Space above the quote */
+  font-size: 18px; /* Font size */
+}
+
+.index-page .menu-toggle {
+  background-color: transparent;
+  border: none;
+  color: #333; /* Darker color for contrast */
+  font-size: 2rem;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.index-page .fancy-menu {
+  display: none; /* Hidden by default */
+  position: absolute; /* Position it below the header */
+  top: 100%; /* Below the header */
+  left: 50%;
+  transform: translateX(-50%); /* Center the dropdown */
+  background-color: #ffffff; /* White background */
+  border-radius: 8px; /* Rounded corners for a smooth look */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+  z-index: 999; /* Make sure it overlaps other content */
+  padding: 10px 0; /* Padding for a more spacious dropdown */
+  width: max-content; /* Make sure the dropdown width adjusts based on content */
+  min-width: 180px; /* Set a minimum width to ensure uniformity */
+}
+
+.index-page .fancy-menu.show {
+  display: block; /* Show when active */
+}
+
+.index-page .fancy-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.index-page .fancy-menu ul li {
+  position: relative;
+}
+
+.index-page .fancy-menu ul li a {
+  color: #005f73; /* Dark blue text */
+  text-decoration: none;
+  padding: 12px 20px; /* Slightly bigger padding for a more clickable feel */
+  display: block;
+  border-radius: 5px; /* Rounded corners for each item */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  white-space: nowrap; /* Prevent text from breaking and causing overflow */
+}
+
+.index-page .fancy-menu ul li a:hover {
+  color: #ffffff; /* White text color on hover */
+  background-color: #0077b6; /* Blue background on hover */
+  transform: translateX(5px); /* Subtle slide effect on hover */
+  border-radius: 10px; /* More pronounced rounding on hover */
+}
+
+.index-page .fancy-menu ul li a:active {
+  background-color: #0096c7; /* Slightly darker blue when clicked */
+  transform: translateX(2px); /* Slight movement when clicked */
+}
+
+.index-page .fancy-menu ul li a:focus {
+  outline: none; /* Remove default outline for focus */
+}
+
+
+.logged-in-user {
+  display: flex;
+  align-items: center; /* Vertically aligns icon and text */
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Text color */
+  position: absolute;
+  right: 30px; /* Distance from the right edge */
+  text-decoration: none; /* Remove underline on link */
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.logged-in-user:hover {
+  color: #449cb9; /* Highlight text on hover */
+}
+
+.logged-in-user img {
+  margin-right: 8px; /* Adjust the space between icon and text */
+}
+
+.user-info p {
+  font-size: 18px; /* Username text size */
+  margin: 0; /* Remove unnecessary margin */
+  display: flex;
+  align-items: baseline; /* Align small label with username */
+}
+
+.user-info small {
+  font-size: 14px; /* Slightly smaller text for "Logged in as" */
+  color: #666; /* Gray color for the label */
+  margin-right: 4px; /* Space between label and username */
+}
+
+.profile-icon {
+  width: 40px; /* Icon size */
+  height: 40px;
+  border-radius: 50%; /* Circular icon */
+  object-fit: cover; /* Fit within circle */
+  border: 2px solid #449cb9; /* Border around the icon */
+}
+
+
+.welcome-section {
+  background-image: url('images/ob.jpeg');
+  background-size: cover;
+  background-position: center;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+  color: white; /* Text color for better contrast */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-section h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.welcome-section .username {
+  color: #2e7ca8;
+}
+
+.welcome-section p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.welcome-section button {
+  background-color: #2e7ca8;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.profile-section {
+  padding: 20px;
+  background-color: #f0f0f0; /* Light background for the profile section */
+  margin-top: 20px; /* Space between sections */
+  border-radius: 8px;
+  text-align: left;
+}
+
+.profile-section h2 {
+  margin-bottom: 15px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 20px; /* Space below profile info */
+}
+
+.profile-pic {
+  width: 80px; /* Profile picture size */
+  height: 80px; /* Profile picture size */
+  border-radius: 50%; /* Circular profile picture */
+  margin-right: 15px; /* Space between picture and text */
+}
+
+.level-up {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  background-color: #e0e0e0; /* Background of the progress bar */
+  border-radius: 5px;
+  height: 25px; /* Height of the progress bar */
+  width: 100%; /* Full width */
+  overflow: hidden; /* Prevent overflow */
+  position: relative;
+}
+
+.progress {
+  background-color: #76c7c0; /* Color of the progress */
+  height: 100%;
+  width: 0; /* Start at 0 for animation */
+  transition: width 1s ease; /* Animation for the width */
+}
+
+.experience-points {
+  margin-top: 5px;
+}
+
+/* Daily Tasks Section */
+.daily-tasks {
+  margin-top: 20px; /* Space above daily tasks */
+  padding: 15px; /* Padding for the daily tasks section */
+  background-color: #ffecb3; /* Light yellow background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.daily-tasks h3 {
+  margin-bottom: 10px; /* Space below the tasks title */
+  color: #d84315; /* Title color */
+}
+
+.daily-tasks ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.daily-tasks ul li {
+  display: flex;
+  align-items: center; /* Center align items */
+  margin: 10px 0; /* Space between tasks */
+  padding: 15px; /* Padding for each task */
+  background-color: #ffe0b2; /* Light orange background for tasks */
+  border-radius: 5px; /* Rounded corners for tasks */
+  transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.5s ease; /* Animations */
+}
+
+.daily-tasks ul li.completed-task {
+  background-color: #c8e6c9; /* Green background when completed */
+  transform: scale(1.05); /* Slightly enlarge on completion */
+  opacity: 0.7; /* Fade effect */
+  text-decoration: line-through; /* Strike-through text */
+}
+
+.daily-tasks ul li:hover {
+  background-color: #ffcc80; /* Darker orange on hover */
+}
+
+.daily-tasks ul li input {
+  margin-right: 10px; /* Space between checkbox and text */
+}
+
+.content {
+  padding: 20px;
+  background-color: #f0f0f0; /* Light background for the rest of the page */
+  min-height: 100vh; /* Ensure the content section takes up space */
+}
+
+/* View All Tasks Button */
+.view-all-tasks {
+  margin-top: 20px; /* Space above the button */
+  padding: 10px 20px; /* Padding for the button */
+  background-color: #ff8e3c; /* Pastel neon color */
+  color: #fff; /* Text color */
+  border: none; /* No border */
+  border-radius: 30px; /* Rounded corners */
+  font-size: 18px; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+  position: relative; /* Position for pseudo-elements */
+  overflow: hidden; /* Ensure animations stay within the button */
+  transition: transform 0.3s ease; /* Smooth transform on hover */
+  
+}
+
+.view-all-tasks::before,
+.view-all-tasks::after {
+  content: '';
+  position: absolute; /* Position relative to the button */
+  width: 300%; /* Width for the glowing effect */
+  height: 300%; /* Height for the glowing effect */
+  background: rgba(255, 255, 255, 0.2); /* Light background for glow */
+  border-radius: 50%; /* Circular shape */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%) scale(0); /* Initially scaled down */
+  transition: transform 0.6s ease; /* Smooth scaling for glow */
+  z-index: 0; /* Behind the button */
+}
+
+.view-all-tasks:hover::before,
+.view-all-tasks:hover::after {
+  transform: translate(-50%, -50%) scale(1); /* Scale up on hover */
+}
+
+.view-all-tasks:hover {
+  transform: translateY(-3px); /* Slight lift on hover */
+}
+
+.view-all-tasks span {
+  position: relative; /* Position for text */
+  z-index: 1; /* Above the glow */
+}
+
+/* Floating Bubbles */
+.bubble {
+  position: absolute;
+  bottom: -50px; /* Start below the viewport */
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+  border-radius: 50%; /* Circular shape */
+  animation: float 6s ease-in forwards; /* Animation properties */
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-100vh); /* Move up and out of view */
+  }
+}
+footer {
+            background-color: #0e5066;
+            color: white;
+            text-align: center;
+            padding: 38px;
+            width: 100%;
+        }
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto; /* Center the content */
+}
+
+.social-media {
+  margin-bottom: 5px; /* Reduced margin */
+}
+
+.social-link {
+            margin: 0 8px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+.social-link:hover {
+  color: grey; /* Change color on hover */
+}
+
+.contact-info p {
+  margin: 3px 0; /* Reduced space between paragraphs */
+}
+
+.contact-info a {
+  color: #333; /* Link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.contact-info a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+/* Specific styling for the tasks form header */
+.tasks-header {
+  font-size: 2rem ; /* Customize as needed */
+  color: #f3879e ; /* Text color */
+  background-image: url('images/hori.jpg') ;
+  background-size: cover ;
+  background-position: center ;
+  padding: 20px ;
+  text-align: center ;
+  border-radius: 8px; /* Optional: for rounded edges */
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Resources</title>
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #2bc0e4, #74ebd5, #ffffff, #ffffff, #FA709A);
+            color: #333;
+			height: 270vh;
+        }
+
+        
+		
+        main {
+            padding: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section p {
+            line-height: 1.6;
+			color: #0e5066;
+        }
+
+        
+
+        footer {
+            background-color: #0e5066;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-media {
+            margin-bottom: 5px;
+        }
+
+        .social-link {
+            margin: 0 8px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: grey;
+        }
+
+        .contact-info p {
+            margin: 3px 0;
+        }
+
+        .contact-info a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            background-color: #00aaff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0088cc;
+			transform: scale(1.05);
+        }
+
+        #quote {
+            margin-top: 20px;
+            font-style: italic;
+            color: grey;
+        }
+
+        .tasks-header {
+            font-size: 2rem;
+            color: #f3879e;
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+		
+		img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+			padding-top: 20px;
+        }
+		
+		.home{
+			margin-left: 20px;
+			text-decoration: none;
+			color: black;
+		}
+		.home:hover{
+			color: grey;
+			transform: scale(1.05);
+		}
+    </style>
+</head>
+<body>
+<a href = "homeexample.html" class = "home">&larr; Home</a>
+		<div id="image">
+		<center>
+			<img src="images/moodifylogo.jpg" alt="Team Image">
+			</center>
+		</div>
+		
+	
+	
+	
+    <main>
+        <section class="section">
+            <h2>Your Personal Journal</h2>
+            <p>
+				Your journal is more than just a record; it's a personal sanctuary where you can express your thoughts, track your emotional journey, and set meaningful goals. By writing regularly, you create a safe space to explore your feelings, reflect on your experiences, and understand your evolving mental health. Each entry serves as a snapshot of where you are in your journey, helping you identify patterns, triggers, and achievements. As you look back on past entries, you can celebrate your growth, gain insight into your progress, and feel empowered by the changes you've made. This tool becomes a valuable resource for self-awareness, healing, and motivation, allowing you to celebrate every small victory along the way.
+            </p>
+        </section>
+		
+		<br>
+
+        <section class="section">
+            <h2>Weekly Reflections</h2>
+            <p>
+                The Moodify Weekly Reflections feature provides users with a structured way to review their emotional and 
+				mental health progress over the week.  The feature also tracks achievements, milestones, and personal goals, 
+				offering actionable insights for unmet objectives. Users have the option to print their reflections and insights 
+				to a PDF, enabling easy sharing or offline review for personal growth or professional consultations.
+            </p>
+        </section><br>
+
+        <section class="section">
+            <h2>Zen Zone</h2>
+            <p>
+				The Zen Zone feature is a dedicated space within Moodify designed to help users find calm, focus, and emotional balance. It offers a variety of mindfulness and relaxation tools, including breathing exercises, tailored to individual preferences and needs. By promoting mindfulness and relaxation, the Zen Zone supports emotional well-being and mental clarity, providing users with an accessible retreat from the stresses of daily life.
+			</p>
+        </section>
+		
+		<br>
+
+        <section class="section">
+            <h2>Resources to Support Your Growth</h2>
+            <ul style= "color: #0e5066;">
+                <li>Journals</li>
+                <li>Weekly Reflection</li>
+                <li>Helpline resources</li>
+				<li>Zen Zone</li>
+				<li>Tunes for Your Mood</li>
+                <li>Chatroom with therapists coming soon!`</li>
+            </ul>
+        </section>
+		
+		<br>
+
+        <section class="section">
+            <h2>Why Choose Moodify?</h2>
+            <p>
+				Moodify is designed with your unique mental health journey in mind, offering a personalized experience that prioritizes your privacy, well-being, and ease of use. We understand that mental health is a deeply personal matter, which is why our platform ensures that your information remains secure and confidential. With features that encourage self-reflection, progress tracking, and goal setting, Moodify empowers you to take an active role in managing your mental health. Whether you're seeking resources, tracking your mood, or simply need a space to express yourself, we offer continuous support and motivation to help you stay on track. Our user-friendly platform is accessible anytime, anywhere, ensuring that you have the tools and guidance you need to make meaningful strides toward mental wellness.
+            </p>
+			<br>
+            <button class="button" onclick="displayQuote()">Get Motivated</button>
+            <p id="quote"></p>
+        </section>
+    </main>
+	
+	<br>
+	
+    <footer>
+        <div class="footer-content">
+            <div class="social-media">
+			<p>Follow us on:</p>
+                <a href="https://www.instagram.com/moodifysa/profilecard/?igsh=aXp6ejFjcHF2Z2E3" class="social-link">Instagram</a>
+            </div>
+            <div class="contact-info">
+                <p>Email us at: <a href="mailto:moodifysa@gmail.com" style = "color: white">moodifysa@gmail.com</a></p>
+            </div><br>
+			<div class="social-media">
+                <a href="homeexample.html" class="social-link">Home</a>
+                <a href="aboutus.html" class="social-link">About Us</a>
+				<a href="FAQ.html" class="social-link">FAQs</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function displayQuote() {
+            const quotes = [
+                "Your journey matters, and progress is progress, no matter how small.",
+                "You are stronger than you think. Take it one day at a time.",
+                "Every step forward is a step closer to a healthier, happier you.",
+                "Celebrate your small wins—they add up to big changes!",
+                "'It always seems impossible until it’s done'. – Nelson Mandela",
+                "'Success is not final, failure is not fatal: It is the courage to continue that counts'. – Winston Churchill"
+
+            ];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('quote').innerText = randomQuote;
+        }
+    </script>
+</body>
+</html>

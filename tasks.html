@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your main CSS file -->
+    <script src="script.js" defer></script> <!-- Link to your main JavaScript file -->
+
+    <!-- Inline CSS for Sunset Theme with Animations -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff7e5f, #feb47b); /* Initial sunset gradient */
+            background-size: 400% 400%; /* For animation */
+            animation: gradientAnimation 15s ease infinite; /* Animation for background */
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+            overflow: auto;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: auto;
+            transition: transform 0.3s;
+        }
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+        .task-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .level-display {
+            background: #ff6f61; /* Background color for level display */
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            font-size: 24px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .xp-progress {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            height: 20px;
+            width: 100%;
+            margin-top: 10px;
+            position: relative;
+        }
+        .xp-progress-bar {
+            background: #ff6f61; /* Progress bar color */
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-right: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        .active-tab {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .task-list {
+            margin-top: 20px;
+        }
+        .task-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            position: relative;
+            transition: background 0.3s;
+        }
+        .task-item.completed {
+            background: rgba(0, 255, 0, 0.3); /* Green background for completed tasks */
+        }
+        .progress-bar {
+            background: #ff6f61;
+            height: 5px;
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        button {
+            background-color: #ff6f61; /* Sunset color */
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #ff4c4c; /* Darker shade on hover */
+            transform: scale(1.05);
+        }
+        button:disabled {
+            background-color: #ccc; /* Grey background for disabled button */
+            cursor: not-allowed; /* Change cursor to indicate disabled */
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            display: none; /* Hidden by default */
+            z-index: 1000;
+            transition: opacity 0.5s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            font-size: 24px; /* Larger font size for emphasis */
+            animation: toastAnimation 1s forwards; /* Toast animation */
+        }
+        @keyframes toastAnimation {
+            0% { transform: translate(-50%, 20px); opacity: 0; }
+            50% { transform: translate(-50%, -10px); opacity: 1; }
+            100% { transform: translate(-50%, 0); opacity: 1; }
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        
+        /* Celebration Animation */
+        .celebration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: #FFD700; /* Gold color */
+            opacity: 0;
+            animation: celebrate 1.5s forwards;
+        }
+        @keyframes celebrate {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        header{
+            background-color: aliceblue;
+        }
+     
+
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <h1 class="tasks-header">Manage Your Tasks</h1>
+    </header>
+
+    <div class="form-container">
+        <h2>Select a Task</h2>
+        <div class="task-info">
+            <div class="level-display">Current Level: <span id="currentLevel">1</span></div>
+            <div>XP to Next Level: <strong id="xpToNextLevel">50</strong></div>
+            <div class="xp-progress">
+                <div class="xp-progress-bar" id="xpProgressBar" style="width: 0%;"></div> <!-- Dynamic XP progress -->
+            </div>
+        </div>
+        
+        <!-- Tab Navigation -->
+        <div>
+            <div class="tab active-tab" onclick="showTasks('daily')">Daily Tasks</div>
+            <div class="tab" onclick="showTasks('weekly')">Weekly Tasks</div>
+            <div class="tab" onclick="showTasks('monthly')">Monthly Tasks</div>
+        </div>
+
+        <!-- Task Lists -->
+        <div class="task-list" id="taskList">
+            <div class="task-item daily-task" data-xp="10">
+                <p>Daily Meditation (10 XP)</p>
+                <div class="progress-bar" style="width: 0%;"></div>
+                <button onclick="completeTask(this)">Complete Task</button>
+            </div>
+            <div class="task-item daily-task" data-xp="5">
+                <p>Drink 8 Glasses of Water (5 XP)</p>
+                <div class="progress-bar" style="width: 0%;"></div>
+                <button onclick="completeTask(this)">Complete Task</button>
+            </div>
+            <div class="task-item weekly-task" style="display:none;" data-xp="50">
+                <p>Weekly Journal Entry (50 XP)</p>
+                <div class="progress-bar" style="width: 0%;"></div>
+                <button onclick="completeTask(this)">Complete Task</button>
+            </div>
+            <div class="task-item weekly-task" style="display:none;" data-xp="75">
+                <p>Attend a Support Group (75 XP)</p>
+                <div class="progress-bar" style="width: 0%;"></div>
+                <button onclick="completeTask(this)">Complete Task</button>
+            </div>
+            <div class="task-item monthly-task" style="display:none;" data-xp="100">
+                <p>Monthly Self-Care Activity (100 XP)</p>
+                <div class="progress-bar" style="width: 0%;"></div>
+                <button onclick="completeTask(this)">Complete Task</button>
+            </div>
+            <div class="task-item monthly-task" style="display:none;" data-xp="150">
+                <p>Volunteer for a Local Charity (150 XP)</p>
+                <div class="progress-bar" style="width: 0%;"></div>
+                <button onclick="completeTask(this)">Complete Task</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toastMessage"></div> <!-- Toast message for feedback -->
+
+    <footer>
+        <p>&copy; 2024 Moodify</p>
+    </footer>
+
+    <audio id="levelUpSound" src="level-up-sound.mp3" preload="auto"></audio> <!-- Level Up Sound -->
+
+    <script>
+        let currentXP = 0; // Total XP earned
+        let currentLevel = 1; // Current level
+        const baseXPToNextLevel = 50; // Base XP needed for the first level
+        const currentLevelElement = document.getElementById('currentLevel');
+        const xpToNextLevelElement = document.getElementById('xpToNextLevel');
+        const xpProgressBar = document.getElementById('xpProgressBar');
+        const toastMessage = document.getElementById('toastMessage');
+        const levelUpSound = document.getElementById('levelUpSound');
+
+        function calculateXPToNextLevel(level) {
+            // Formula for increasing XP requirement: baseXP * level^2
+            return baseXPToNextLevel * Math.pow(level, 2);
+        }
+
+        function showTasks(taskType) {
+            const dailyTasks = document.querySelectorAll('.daily-task');
+            const weeklyTasks = document.querySelectorAll('.weekly-task');
+            const monthlyTasks = document.querySelectorAll('.monthly-task');
+            const tabs = document.querySelectorAll('.tab');
+
+            // Hide all tasks
+            dailyTasks.forEach(task => task.style.display = 'none');
+            weeklyTasks.forEach(task => task.style.display = 'none');
+            monthlyTasks.forEach(task => task.style.display = 'none');
+
+            // Show selected tasks
+            if (taskType === 'daily') {
+                dailyTasks.forEach(task => task.style.display = 'block');
+                tabs[0].classList.add('active-tab');
+                tabs[1].classList.remove('active-tab');
+                tabs[2].classList.remove('active-tab');
+            } else if (taskType === 'weekly') {
+                weeklyTasks.forEach(task => task.style.display = 'block');
+                tabs[0].classList.remove('active-tab');
+                tabs[1].classList.add('active-tab');
+                tabs[2].classList.remove('active-tab');
+            } else if (taskType === 'monthly') {
+                monthlyTasks.forEach(task => task.style.display = 'block');
+                tabs[0].classList.remove('active-tab');
+                tabs[1].classList.remove('active-tab');
+                tabs[2].classList.add('active-tab');
+            }
+        }
+
+        function completeTask(button) {
+            const taskItem = button.parentElement;
+            const xpEarned = parseInt(taskItem.getAttribute('data-xp')); // Get XP from data attribute
+            const progressBar = taskItem.querySelector('.progress-bar');
+            progressBar.style.width = '100%'; // Simulate task completion
+            taskItem.classList.add('completed'); // Add completed class for visual feedback
+            button.innerText = 'Completed'; // Change button text
+            button.disabled = true; // Disable the button to prevent further clicks
+
+            // Update total XP
+            currentXP += xpEarned;
+            updateXPDisplay(xpEarned); // Pass the XP earned for the toast message
+
+            console.log('Task Completed:', taskItem.querySelector('p').innerText);
+        }
+
+        function updateXPDisplay(xpEarned) {
+            // Update XP progress bar
+            const xpToNextLevel = calculateXPToNextLevel(currentLevel); // Calculate required XP for next level
+            const progressPercentage = (currentXP / xpToNextLevel) * 100;
+            xpProgressBar.style.width = `${Math.min(progressPercentage, 100)}%`; // Cap at 100%
+
+            // Show toast message
+            showToast(`Task completed! You earned ${xpEarned} XP!`);
+
+            // Update level if XP exceeds threshold
+            if (currentXP >= xpToNextLevel) {
+                currentXP -= xpToNextLevel; // Reset XP for next level
+                currentLevel++; // Increment level
+                currentLevelElement.innerText = currentLevel; // Update level display
+                xpToNextLevelElement.innerText = calculateXPToNextLevel(currentLevel); // Update XP required for next level
+                resetXPProgress(); // Reset the progress bar and update it
+                levelUpFeedback(); // Provide feedback for leveling up
+            }
+        }
+
+        function resetXPProgress() {
+            // Reset the XP progress bar to reflect the current XP
+            const xpToNextLevel = calculateXPToNextLevel(currentLevel); // Calculate required XP for next level
+            const progressPercentage = (currentXP / xpToNextLevel) * 100;
+            xpProgressBar.style.width = `${Math.min(progressPercentage, 100)}%`; // Cap at 100%
+        }
+
+        function showToast(message) {
+            toastMessage.innerText = message; // Set the toast message
+            toastMessage.style.display = 'block'; // Show the toast
+            toastMessage.style.opacity = 1; // Make it visible
+
+            // Hide the toast after 3 seconds
+            setTimeout(() => {
+                toastMessage.style.opacity = 0; // Fade out
+                setTimeout(() => {
+                    toastMessage.style.display = 'none'; // Hide it completely
+                }, 500); // Wait for fade out to finish
+            }, 3000);
+        }
+
+        function levelUpFeedback() {
+            // Play level up sound
+            levelUpSound.play();
+
+            // Create celebration text
+            const celebrationText = document.createElement('div');
+            celebrationText.className = 'celebration';
+            celebrationText.innerText = `Level Up! 🎉`;
+            document.body.appendChild(celebrationText);
+
+            // Create fancy toast for level up
+            const levelUpToast = document.createElement('div');
+            levelUpToast.className = 'toast';
+            levelUpToast.innerHTML = `<strong>Congratulations!</strong><br>You have reached Level <span style="color: #FFD700;">${currentLevel}</span>!`;
+            document.body.appendChild(levelUpToast);
+
+            // Show the fancy toast
+            levelUpToast.style.display = 'block';
+            levelUpToast.style.opacity = 1;
+
+            // Hide the fancy toast after 5 seconds
+            setTimeout(() => {
+                levelUpToast.style.opacity = 0; // Fade out
+                setTimeout(() => {
+                    levelUpToast.remove(); // Remove from DOM
+                }, 500); // Wait for fade out to finish
+            }, 5000); // Show for 5 seconds
+
+            // Remove celebration text after animation
+            setTimeout(() => {
+                celebrationText.remove();
+            }, 1500); // Duration of the animation
+        }
+
+        // Show daily tasks by default
+        showTasks('daily');
+    </script>
+
+</body>
+</html>
